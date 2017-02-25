@@ -8,7 +8,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-
     public Button start_button;
 
     public void startButton () {
@@ -21,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(purpose);
             }
         });
-
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
