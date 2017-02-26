@@ -11,16 +11,22 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<Boolean> list;
+    public static int GRID_SIZE;
 
     // Constructor
-    public ImageAdapter(Context c) {
+    public ImageAdapter(Context c,ArrayList<Boolean> list) {
         mContext = c;
+        this.list = list;
+        GRID_SIZE = Integer.parseInt(c.getResources().getString(R.string.grid_size));
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return GRID_SIZE;
     }
 
     public Object getItem(int position) {
@@ -48,8 +54,13 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
             holder = (ViewHolder) imageView.getTag();
         }
-        holder.isAlive = true;
-        imageView.setImageResource(mThumbIds[position]);
+        holder.isAlive = list.get(position);
+        if(holder.isAlive) {
+            imageView.setImageResource(R.drawable.alivecell);
+        } else {
+            imageView.setImageResource(R.drawable.deadcell);
+        }
+
         return imageView;
     }
 
@@ -57,37 +68,4 @@ public class ImageAdapter extends BaseAdapter {
         boolean isAlive;
     }
 
-    // Keep all Images in array
-    public Integer[] mThumbIds = {
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,
-            R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell,R.drawable.alivecell, R.drawable.alivecell
-    };
 }
