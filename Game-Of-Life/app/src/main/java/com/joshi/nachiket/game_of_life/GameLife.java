@@ -1,7 +1,9 @@
 package com.joshi.nachiket.game_of_life;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.media.Image;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -182,12 +184,35 @@ public class GameLife extends AppCompatActivity {
 
     public void resetButton () {
         reset_button = (Button) findViewById(R.id.reset);
+
+
         reset_button.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
                 //Log.d("TAG", "RESET BUTTON PRESSED");
-                reset();
+                AlertDialog.Builder builder = new AlertDialog.Builder(GameLife.this);
+                builder.setMessage("DO YOU WANT TO RESET GRID?");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton(
+                        "YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                reset();
+                            }
+                        });
+
+                builder.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog myAlertBox = builder.create();
+                myAlertBox.show();
             }
         });
     }
